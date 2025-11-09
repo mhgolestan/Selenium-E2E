@@ -8,13 +8,15 @@ namespace EATestProject;
 public class UnitTest1 : IDisposable
 {
     readonly IWebDriver driver;
-    private readonly IDriverFixture driverFixture;
+    private readonly IHomePage homePage;
+    private readonly ICreateProductPage createProductPage;
 
-    public UnitTest1(IDriverFixture driverFixture)
+    public UnitTest1(IDriverFixture driverFixture, IHomePage homePage, ICreateProductPage createProductPage)
     {
         driver = driverFixture.Driver;
         driver.Navigate().GoToUrl(new Uri("http://localhost:8001/"));
-        this.driverFixture = driverFixture;
+        this.homePage = homePage;
+        this.createProductPage = createProductPage;
     }
 
     public void Dispose()
@@ -23,11 +25,8 @@ public class UnitTest1 : IDisposable
     }
 
     [Fact]
-    public void TestHomePage()
+    public void Test1()
     {
-        HomePage homePage = new HomePage(driverFixture);
-        CreateProductPage createProductPage = new CreateProductPage(driverFixture);
-
         homePage.CreateProduct();
         createProductPage.EnterProductDetails(new Product
         {

@@ -3,7 +3,12 @@ using OpenQA.Selenium;
 
 namespace EATestProject.Pages;
 
-public class HomePage
+public interface IHomePage
+{
+    void CreateProduct();
+}
+
+public class HomePage : IHomePage
 {
     private readonly IWebDriver driver;
     public HomePage(IDriverFixture driverFixture) => driver = driverFixture.Driver;

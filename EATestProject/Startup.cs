@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using EATestFramework.Driver;
+using EATestProject.Pages;
 
 namespace EATestProject;
 
@@ -7,8 +8,10 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.UseWebDriverInitializer(BrowserType.Firefox);
+        services.UseWebDriverInitializer(BrowserType.Chrome);
         services.AddScoped<IDriverFixture, DriverFixture>();
         services.AddScoped<IBrowserDriver, BrowserDriver>();
+        services.AddScoped<IHomePage, HomePage>();
+        services.AddScoped<ICreateProductPage, CreateProductPage>();
     }
 }

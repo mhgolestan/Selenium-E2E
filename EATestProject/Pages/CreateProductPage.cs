@@ -1,4 +1,3 @@
-using System;
 using EATestFramework.Driver;
 using EATestProject.Model;
 using OpenQA.Selenium;
@@ -6,7 +5,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace EATestProject.Pages;
 
-public class CreateProductPage
+public interface ICreateProductPage
+{
+    void EnterProductDetails(Product product);
+}
+
+public class CreateProductPage : ICreateProductPage
 {
     private readonly IWebDriver driver;
     public CreateProductPage(IDriverFixture driverFixture) => driver = driverFixture.Driver;
@@ -16,7 +20,7 @@ public class CreateProductPage
     IWebElement txtPrice => driver.FindElement(By.Id("Price"));
     IWebElement ddlProductType => driver.FindElement(By.Id("ProductType"));
     IWebElement btnCreate => driver.FindElement(By.Id("Create"));
-    
+
     public void EnterProductDetails(Product product)
     {
         txtName.SendKeys(product.Name);
