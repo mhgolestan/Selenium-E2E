@@ -1,29 +1,27 @@
 using OpenQA.Selenium;
 using SeleniumXUnitBasics.Driver;
+using SeleniumXUnitBasics.Settings;
 
 namespace SeleniumXUnitBasics;
-
-public interface IDriverFixture
-{
-    IWebDriver Driver { get; }
-}
 
 public class DriverFixture : IDriverFixture
 {
     readonly IWebDriver driver;
+    private readonly TestSettings testSettings;
     private readonly IBrowserDriver browserDriver;
 
-    public DriverFixture(IBrowserDriver browserDriver)
+    public DriverFixture(TestSettings testSettings, IBrowserDriver browserDriver)
     {
+        this.testSettings = testSettings;
         this.browserDriver = browserDriver;
         driver = GetWebDriver();
     }
 
     public IWebDriver Driver => driver;
 
-    private IWebDriver GetWebDriver(BrowserType browserType = BrowserType.Chrome)
+    private IWebDriver GetWebDriver()
     {
-        return browserType switch
+        return testSettings.browserType switch
         {
             BrowserType.Chrome => browserDriver.GetChromeDriver(),
             BrowserType.Firefox => browserDriver.GetFirefoxDriver(),
