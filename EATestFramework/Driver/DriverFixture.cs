@@ -21,7 +21,7 @@ public class DriverFixture : IDriverFixture
 
     private IWebDriver GetWebDriver()
     {
-        return testSettings.browserType switch
+        return testSettings.BrowserType switch
         {
             BrowserType.Chrome => browserDriver.GetChromeDriver(),
             BrowserType.Firefox => browserDriver.GetFirefoxDriver(),

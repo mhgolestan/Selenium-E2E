@@ -5,5 +5,5 @@ namespace EATestFramework.Settings;
 
 public class TestSettings
 {
-    public BrowserType browserType { get; set; }
+    public BrowserType BrowserType { get; set; }
 }
