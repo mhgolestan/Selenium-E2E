@@ -1,24 +1,28 @@
 using OpenQA.Selenium;
 using SeleniumXUnitBasics.Driver;
-using Autofac;
 
 namespace SeleniumXUnitBasics;
 
-public class DriverFixture
+public interface IDriverFixture
+{
+    IWebDriver Driver { get; }
+}
+
+public class DriverFixture : IDriverFixture
 {
     readonly IWebDriver driver;
-    private readonly IContainer container;
-    public DriverFixture(IContainer container, BrowserType browserType)
+    private readonly IBrowserDriver browserDriver;
+
+    public DriverFixture(IBrowserDriver browserDriver)
     {
-        this.container = container;
-        driver = GetWebDriver(browserType);
+        this.browserDriver = browserDriver;
+        driver = GetWebDriver();
     }
 
     public IWebDriver Driver => driver;
 
-    private IWebDriver GetWebDriver(BrowserType browserType)
+    private IWebDriver GetWebDriver(BrowserType browserType = BrowserType.Chrome)
     {
-        var browserDriver = container.Resolve<IBrowserDriver>();
         return browserType switch
         {
             BrowserType.Chrome => browserDriver.GetChromeDriver(),
