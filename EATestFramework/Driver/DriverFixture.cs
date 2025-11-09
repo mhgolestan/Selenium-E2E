@@ -1,8 +1,7 @@
 using OpenQA.Selenium;
-using EATestFramework.Driver;
 using EATestFramework.Settings;
 
-namespace EATestFramework;
+namespace EATestFramework.Driver;
 
 public class DriverFixture : IDriverFixture
 {
