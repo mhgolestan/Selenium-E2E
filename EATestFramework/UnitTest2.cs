@@ -1,14 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumXUnitBasics.Driver;
+using EATestFramework.Driver;
 
-namespace SeleniumXUnitBasics;
+namespace EATestFramework;
 
-public class UnitTest1 : IDisposable
+public class UnitTest2: IDisposable
 {
     readonly IWebDriver driver;
-    
-    public UnitTest1(IDriverFixture driverFixture)
+
+    public UnitTest2(IDriverFixture driverFixture)
     {
         driver = driverFixture.Driver;
         driver.Navigate().GoToUrl(new Uri("http://localhost:8001/"));
@@ -17,7 +17,6 @@ public class UnitTest1 : IDisposable
     public void Dispose()
     {
         driver.Quit();
-        GC.SuppressFinalize(this);
     }
 
     [Fact]

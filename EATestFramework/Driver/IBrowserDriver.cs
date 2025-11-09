@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 
-namespace SeleniumXUnitBasics.Driver;
+namespace EATestFramework.Driver;
 
 public interface IBrowserDriver
 {

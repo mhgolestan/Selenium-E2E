@@ -1,7 +1,7 @@
 using System;
-using SeleniumXUnitBasics.Driver;
+using EATestFramework.Driver;
 
-namespace SeleniumXUnitBasics.Settings;
+namespace EATestFramework.Settings;
 
 public class TestSettings
 {

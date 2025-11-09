@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using SeleniumXUnitBasics.Settings;
+using EATestFramework.Settings;
 
-namespace SeleniumXUnitBasics.Driver;
+namespace EATestFramework.Driver;
 
 public static class WebDriverInitializerExtencion
 {
