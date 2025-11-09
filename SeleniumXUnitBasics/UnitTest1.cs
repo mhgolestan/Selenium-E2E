@@ -1,15 +1,23 @@
-﻿using OpenQA.Selenium;
+﻿using System.Net.Quic;
+using Autofac;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumXUnitBasics.Driver;
 
 namespace SeleniumXUnitBasics;
 
-public class UnitTest1: IDisposable
+public class UnitTest1 : IDisposable
 {
     readonly IWebDriver driver;
+    readonly IContainer container;
 
     public UnitTest1()
     {
-        var driverFixture = new DriverFixture(Driver.BrowserType.Chrome);
+        var builder = new ContainerBuilder();
+        builder.RegisterType<BrowserDriver>().As<IBrowserDriver>();
+        container = builder.Build();
+
+        var driverFixture = new DriverFixture(container, BrowserType.Chrome);
         driver = driverFixture.Driver;
         driver.Navigate().GoToUrl(new Uri("http://localhost:8001/"));
     }
@@ -17,6 +25,7 @@ public class UnitTest1: IDisposable
     public void Dispose()
     {
         driver.Quit();
+        GC.SuppressFinalize(this);
     }
 
     [Fact]
