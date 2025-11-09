@@ -1,17 +1,22 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumXUnitBasics;
 
-public class UnitTest1: IClassFixture<DriverFixture>
+public class UnitTest1: IDisposable
 {
-    ChromeDriver driver;
+    readonly IWebDriver driver;
 
-    public UnitTest1(DriverFixture driverFixture)
+    public UnitTest1()
     {
-        driver = driverFixture.GetWebDriver();
+        var driverFixture = new DriverFixture(Driver.BrowserType.Chrome);
+        driver = driverFixture.Driver;
         driver.Navigate().GoToUrl(new Uri("http://localhost:8001/"));
+    }
+
+    public void Dispose()
+    {
+        driver.Quit();
     }
 
     [Fact]

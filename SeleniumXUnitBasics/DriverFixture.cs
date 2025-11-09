@@ -1,25 +1,26 @@
-using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
+using SeleniumXUnitBasics.Driver;
 
 namespace SeleniumXUnitBasics;
 
-public class DriverFixture : IDisposable
+public class DriverFixture
 {
-    readonly ChromeDriver driver;
-    public DriverFixture()
+    readonly IWebDriver driver;
+    public DriverFixture(BrowserType browserType)
     {
-        new DriverManager().SetUpDriver(new ChromeConfig());
-        driver = new ChromeDriver();
+        driver = GetWebDriver(browserType);
     }
 
-    public ChromeDriver GetWebDriver() => driver;
+    public IWebDriver Driver => driver;
 
-    public void Dispose()
+    private IWebDriver GetWebDriver(BrowserType browserType)
     {
-        driver.Quit();
-        GC.SuppressFinalize(this);
+        BrowserDriver browserDriver = new BrowserDriver();
+        return browserType switch
+        {
+            BrowserType.Chrome => browserDriver.GetChromeDriver(),
+            BrowserType.Firefox => browserDriver.GetFirefoxDriver(),
+            _ => browserDriver.GetChromeDriver(),
+        };
     }
 }
