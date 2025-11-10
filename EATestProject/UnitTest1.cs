@@ -1,7 +1,8 @@
-﻿using EATestFramework.Driver;
+﻿using AutoFixture.Xunit2;
+using EATestFramework.Driver;
+using EATestProject.Model;
 using EATestProject.Pages;
 using OpenQA.Selenium;
-using EATestProject.Model;
 
 namespace EATestProject;
 
@@ -24,17 +25,19 @@ public class UnitTest1 : IDisposable
         driver.Quit();
     }
 
-    [Fact]
-    public void Test1()
+    [Theory, AutoData]
+    public void Test1(Product product)
     {
-        homePage.CreateProduct();
-        createProductPage.EnterProductDetails(new Product
-        {
-            Name = "Table",
-            Description = "Table Description",
-            Price = 222,
-            ProductType = ProductType.CPU,
-        });
 
+        homePage.CreateProduct();
+        createProductPage.EnterProductDetails(product);
+    }
+
+    [Theory, AutoData]
+    public void Test2(Product product)
+    {
+
+        homePage.CreateProduct();
+        createProductPage.EnterProductDetails(product);
     }
 }
