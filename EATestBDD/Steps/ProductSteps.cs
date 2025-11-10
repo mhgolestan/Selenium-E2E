@@ -4,8 +4,9 @@ using System;
 namespace EATestBDD.Steps;
 
 [Binding]
-public sealed class ProductStepDefinitions
+public sealed class ProductSteps
 {
+   
     [Given(@"I click the Product menu")]
     public void GivenIClickTheProductMenu()
     {
@@ -39,4 +40,3 @@ public sealed class ProductStepDefinitions
         // TODO: Implement verification logic
     }
 }
-

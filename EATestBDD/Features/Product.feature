@@ -1,5 +1,6 @@
 Feature: Product
 	Test the product page functionalities
+
 @mytag
 Scenario: Create product and verify the details
 	Given I click the Product menu And I click the "Create" link
