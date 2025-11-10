@@ -2,6 +2,7 @@
     "dotnet.defaultSolution": "SeleniumXUnitBasics.sln",
     "editor.inlineSuggest.enabled": false,
     "cSpell.words": [
+        "appsettings",
         "Autofac",
         "xunit"
     ]
