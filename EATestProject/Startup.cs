@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using EATestFramework.Driver;
 using EATestProject.Pages;
+using EATestFramework.Extensions;
 
 namespace EATestProject;
 

@@ -1,7 +1,8 @@
+using EATestFramework.Driver;
 using EATestFramework.Settings;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace EATestFramework.Driver;
+namespace EATestFramework.Extensions;
 
 public static class WebDriverInitializerExtencion
 {

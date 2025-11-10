@@ -1,4 +1,5 @@
 using EATestFramework.Driver;
+using EATestFramework.Extensions;
 using EATestProject.Model;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -23,11 +24,10 @@ public class CreateProductPage : ICreateProductPage
 
     public void EnterProductDetails(Product product)
     {
-        txtName.SendKeys(product.Name);
-        txtDescription.SendKeys(product.Description);
-        txtPrice.SendKeys(product.Price.ToString());
-        var select = new SelectElement(ddlProductType);
-        select.SelectByText(product.ProductType.ToString());
+        txtName.ClearAndEnterText(product.Name);
+        txtDescription.ClearAndEnterText(product.Description);
+        txtPrice.ClearAndEnterText(product.Price.ToString());
+        ddlProductType.SelectDropdownByText(product.ProductType.ToString());
         btnCreate.Click();
     }
 }
