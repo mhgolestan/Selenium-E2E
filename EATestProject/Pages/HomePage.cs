@@ -1,4 +1,5 @@
 using EATestFramework.Driver;
+using EATestFramework.Extensions;
 using OpenQA.Selenium;
 
 namespace EATestProject.Pages;
@@ -6,6 +7,8 @@ namespace EATestProject.Pages;
 public interface IHomePage
 {
     void CreateProduct();
+    void PerformClickOnDetails(string name, string operation);
+
 }
 
 public class HomePage : IHomePage
@@ -14,10 +17,15 @@ public class HomePage : IHomePage
     public HomePage(IDriverFixture driverFixture) => driver = driverFixture.Driver;
     IWebElement lnkProduct => driver.FindElement(By.LinkText("Product"));
     IWebElement lnkCreate => driver.FindElement(By.LinkText("Create"));
+    IWebElement tblList => driver.FindElement(By.CssSelector("table"));
 
     public void CreateProduct()
     {
         lnkProduct.Click();
         lnkCreate.Click();
+    }
+    public void PerformClickOnDetails(string name, string operation)
+    {
+        tblList.PerformActionOnCell("5", "Name", name, operation);
     }
 }

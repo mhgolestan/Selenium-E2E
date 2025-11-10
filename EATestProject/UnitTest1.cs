@@ -24,6 +24,7 @@ public class UnitTest1
 
         homePage.CreateProduct();
         createProductPage.EnterProductDetails(product);
+        homePage.PerformClickOnDetails(product.Name, "Details");
     }
 
     [Theory, AutoData]
