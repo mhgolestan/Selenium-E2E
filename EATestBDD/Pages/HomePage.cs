@@ -1,7 +1,3 @@
-using EATestFramework.Driver;
-using EATestFramework.Extensions;
-using OpenQA.Selenium;
-
 namespace EATestBDD.Pages;
 
 public interface IHomePage

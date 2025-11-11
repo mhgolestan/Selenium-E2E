@@ -1,10 +1,3 @@
-using System;
-using EATestBDD.Model;
-using EATestBDD.Pages;
-using FluentAssertions;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-
 namespace EATestBDD.Steps;
 
 [Binding]

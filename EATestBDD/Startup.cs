@@ -1,9 +1,3 @@
-using EATestBDD.Pages;
-using EATestFramework.Driver;
-using EATestFramework.Extensions;
-using Microsoft.Extensions.DependencyInjection;
-using SolidToken.SpecFlow.DependencyInjection;
-
 namespace EATestBDD;
 
 public static class Startup

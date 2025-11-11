@@ -1,9 +1,3 @@
-using EATestFramework.Driver;
-using EATestFramework.Extensions;
-using EATestBDD.Model;
-using OpenQA.Selenium;
-using System;
-
 namespace EATestBDD.Pages;
 
 public interface IProductPage
