@@ -1,42 +1,58 @@
-using TechTalk.SpecFlow;
 using System;
+using EATestBDD.Model;
+using EATestBDD.Pages;
+using FluentAssertions;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace EATestBDD.Steps;
 
 [Binding]
 public sealed class ProductSteps
 {
-   
+    private readonly ScenarioContext scenarioContext;
+    private readonly IHomePage homePage;
+    private readonly IProductPage productPage;
+
+    public ProductSteps(ScenarioContext scenarioContext, IHomePage homePage, IProductPage productPage)
+    {
+        this.scenarioContext = scenarioContext;
+        this.homePage = homePage;
+        this.productPage = productPage;
+    }
+
     [Given(@"I click the Product menu")]
     public void GivenIClickTheProductMenu()
     {
-        Console.WriteLine("Clicking Product Menu");
-        // TODO: Implement navigation logic
+        homePage.ClickProduct();
     }
 
     [Given(@"I click the ""(.*)"" link")]
-    public void GivenIClickTheLink(string linkName)
+    public void GivenIClickTheLink(string create)
     {
-        Console.WriteLine($"Clicking {linkName} link");
-        // TODO: Implement click logic
+        homePage.ClickCreate();
     }
-
+    
     [Given(@"I create product with following details")]
     public void GivenICreateProductWithFollowingDetails(Table table)
     {
-        // TODO: Implement product creation logic using data from the table
-        Console.WriteLine("Creating a new product");
+        var product = table.CreateInstance<Product>();
+        productPage.EnterProductDetails(product);
+        scenarioContext.Set<Product>(product);
     }
 
     [When(@"I click the details link of the newly created product")]
     public void WhenIClickTheDetailsLinkOfTheNewlyCreatedProduct()
     {
-        // TODO: Implement logic to find and click the details link
+        var product = scenarioContext.Get<Product>();
+        homePage.PerformClickOnSpecialValue(product.Name, "Details");
     }
 
     [Then(@"I see all the product details are created as expected")]
     public void ThenISeeAllTheProductDetailsAreCreatedAsExpected()
     {
-        // TODO: Implement verification logic
+        var product = scenarioContext.Get<Product>();
+        var actualProduct = productPage.GetProductDetails();
+        actualProduct.Should().BeEquivalentTo(product, option => option.Excluding(x => x.Id));
     }
 }

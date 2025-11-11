@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using EATestFramework.Driver;
-using EATestFramework.Extensions;
 
 namespace EATestFramework;
 

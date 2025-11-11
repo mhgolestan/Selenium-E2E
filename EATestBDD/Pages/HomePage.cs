@@ -6,8 +6,10 @@ namespace EATestBDD.Pages;
 
 public interface IHomePage
 {
-    void CreateProduct();
-    void PerformClickOnDetails(string name, string operation);
+    void ClickProduct();
+    void ClickCreate();
+    void PerformClickOnSpecialValue(string name, string operation);
+
 
 }
 
@@ -19,12 +21,9 @@ public class HomePage : IHomePage
     IWebElement lnkCreate => driver.FindElement(By.LinkText("Create"));
     IWebElement tblList => driver.FindElement(By.CssSelector("table"));
 
-    public void CreateProduct()
-    {
-        lnkProduct.Click();
-        lnkCreate.Click();
-    }
-    public void PerformClickOnDetails(string name, string operation)
+    public void ClickProduct() => lnkProduct.Click();
+    public void ClickCreate() => lnkCreate.Click();
+    public void PerformClickOnSpecialValue(string name, string operation)
     {
         tblList.PerformActionOnCell("5", "Name", name, operation);
     }
