@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../EATestFramework/EATestFramework.csproj" />
+    <ProjectReference Include="../ProductAPI/ProductAPI.csproj" />
     <Using Include="Xunit" />
     <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
