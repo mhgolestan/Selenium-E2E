@@ -9,7 +9,6 @@ namespace EATestProject;
 
 public class UnitTest1
 {
-    readonly IWebDriver driver;
     private readonly IHomePage homePage;
     private readonly IProductPage productPage;
 
@@ -22,7 +21,6 @@ public class UnitTest1
     [Theory, AutoData]
     public void Test1(Product product)
     {
-
         homePage.CreateProduct();
         productPage.EnterProductDetails(product);
         homePage.PerformClickOnDetails(product.Name, "Details");
@@ -33,7 +31,6 @@ public class UnitTest1
     [Theory, AutoData]
     public void Test2(Product product)
     {
-
         homePage.CreateProduct();
         productPage.EnterProductDetails(product);
     }

@@ -3,9 +3,12 @@
     "editor.inlineSuggest.enabled": false,
     "cSpell.words": [
         "appsettings",
+        "aspnet",
+        "ASPNETCORE",
         "Autofac",
         "Datas",
         "eaapi",
+        "eatest",
         "eawebapp",
         "mytag",
         "Newtonsoft",
