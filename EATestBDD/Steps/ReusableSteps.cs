@@ -26,4 +26,14 @@ public class ReusableSteps
         productRepository.DeleteProduct(productName);
     }
 
+    [Given(@"I cleanup following data")]
+    public void ICleanupFollowingData(Table table)
+    {
+        var products = table.CreateSet<Product>();
+        foreach (var product in products)
+        {
+            if(productRepository.GetProductByName(product.Name) != null)
+                productRepository.DeleteProduct(product.Name);
+        }
+    }
 }
