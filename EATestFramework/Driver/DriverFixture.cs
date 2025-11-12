@@ -1,11 +1,16 @@
-using OpenQA.Selenium;
 using EATestFramework.Settings;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Safari;
 
 namespace EATestFramework.Driver;
 
 public class DriverFixture : IDriverFixture, IDisposable
 {
-    readonly IWebDriver driver;
+    readonly RemoteWebDriver driver;
     private readonly TestSettings testSettings;
     private readonly IBrowserDriver browserDriver;
 
@@ -13,7 +18,8 @@ public class DriverFixture : IDriverFixture, IDisposable
     {
         this.testSettings = testSettings;
         this.browserDriver = browserDriver;
-        driver = GetWebDriver();
+        // driver = GetBrowserOptions();
+        driver = new RemoteWebDriver(testSettings.SeleniumGridUrl, GetBrowserOptions());
         driver.Navigate().GoToUrl(testSettings.ApplicationUri);
     }
 
@@ -32,5 +38,30 @@ public class DriverFixture : IDriverFixture, IDisposable
             BrowserType.Firefox => browserDriver.GetFirefoxDriver(),
             _ => browserDriver.GetChromeDriver(),
         };
+    }
+
+    private dynamic GetBrowserOptions()
+    {
+        switch (testSettings.BrowserType)
+        {
+            case BrowserType.Firefox:
+                {
+                    var firefoxOption = new FirefoxOptions();
+                    firefoxOption.AddAdditionalOption("se:recordVideo", true);
+                    return firefoxOption;
+                }
+            case BrowserType.Edge:
+                return new EdgeOptions();
+            case BrowserType.Safari:
+                return new SafariOptions();
+            case BrowserType.Chrome:
+                {
+                    var chromeOption = new ChromeOptions();
+                    chromeOption.AddAdditionalOption("se:recordVideo", true);
+                    return chromeOption;
+                }
+            default:
+                return new ChromeOptions();
+        }
     }
 }
