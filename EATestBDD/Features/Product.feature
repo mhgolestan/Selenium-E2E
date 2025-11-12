@@ -10,3 +10,4 @@ Scenario: Create product and verify the details
 		| Headphones | Noise cancellation | 300   | PERIPHARALS |
 	When I click the details link of the newly created product
 	Then I see all the product details are created as expected
+	And I delete the created "Headphones" product for cleanup

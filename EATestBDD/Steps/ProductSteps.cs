@@ -25,7 +25,7 @@ public sealed class ProductSteps
     public void GivenIClickTheProductMenu()
     {
         // var getProduct = productRepository.GetAllProducts();
-        productRepository.DeleteProduct(3);
+        // productRepository.DeleteProduct(3);
         homePage.ClickProduct();
     }
 
