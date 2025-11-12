@@ -1,3 +1,5 @@
+using ProductAPI.Repository;
+
 namespace EATestBDD.Steps;
 
 [Binding]
@@ -6,17 +8,24 @@ public sealed class ProductSteps
     private readonly ScenarioContext scenarioContext;
     private readonly IHomePage homePage;
     private readonly IProductPage productPage;
+    private readonly IProductRepository productRepository;
 
-    public ProductSteps(ScenarioContext scenarioContext, IHomePage homePage, IProductPage productPage)
+    public ProductSteps(ScenarioContext scenarioContext,
+                        IHomePage homePage,
+                        IProductPage productPage,
+                        IProductRepository productRepository)
     {
         this.scenarioContext = scenarioContext;
         this.homePage = homePage;
         this.productPage = productPage;
+        this.productRepository = productRepository;
     }
 
     [Given(@"I click the Product menu")]
     public void GivenIClickTheProductMenu()
     {
+        // var getProduct = productRepository.GetAllProducts();
+        productRepository.DeleteProduct(3);
         homePage.ClickProduct();
     }
 
