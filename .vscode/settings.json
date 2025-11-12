@@ -5,8 +5,12 @@
         "appsettings",
         "Autofac",
         "Datas",
+        "eaapi",
+        "eawebapp",
         "mytag",
+        "Newtonsoft",
         "PERIPHARALS",
+        "Swashbuckle",
         "xunit"
     ]
 }
