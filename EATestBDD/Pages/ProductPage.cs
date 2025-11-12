@@ -4,6 +4,7 @@ public interface IProductPage
 {
     void EnterProductDetails(Product product);
     public Product GetProductDetails();
+    void EditProduct(Product product);
 }
 
 public class ProductPage : IProductPage
@@ -16,6 +17,7 @@ public class ProductPage : IProductPage
     IWebElement txtPrice => driver.FindElement(By.Id("Price"));
     IWebElement ddlProductType => driver.FindElement(By.Id("ProductType"));
     IWebElement btnCreate => driver.FindElement(By.Id("Create"));
+    IWebElement btnSave => driver.FindElement(By.Id("Save"));
 
     public void EnterProductDetails(Product product)
     {
@@ -33,8 +35,16 @@ public class ProductPage : IProductPage
             Name = txtName.Text,
             Description = txtDescription.Text,
             Price = int.Parse(txtPrice.Text),
-             ProductType = (ProductType)Enum.Parse(typeof(ProductType),
+            ProductType = (ProductType)Enum.Parse(typeof(ProductType),
                                 ddlProductType.GetAttribute("innerText").ToString()),
         };
+    }
+    
+    public void EditProduct(Product product)
+    {
+        txtName.ClearAndEnterText(product.Name);
+        txtDescription.ClearAndEnterText(product.Description);
+        txtPrice.ClearAndEnterText(product.Price.ToString());
+        btnSave.Click();
     }
 }

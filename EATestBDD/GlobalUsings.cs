@@ -1,6 +1,5 @@
 global using System;
 global using EATestBDD.Pages;
-global using EATestBDD.Model;
 global using EATestFramework.Driver;
 global using EATestFramework.Extensions;
 global using Microsoft.Extensions.DependencyInjection;
@@ -9,3 +8,5 @@ global using FluentAssertions;
 global using TechTalk.SpecFlow;
 global using TechTalk.SpecFlow.Assist;
 global using OpenQA.Selenium;
+global using ProductAPI.Data;
+global using ProductAPI.Repository;

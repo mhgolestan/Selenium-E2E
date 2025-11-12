@@ -1,5 +1,3 @@
-using ProductAPI.Repository;
-
 namespace EATestBDD.Steps;
 
 [Binding]
@@ -12,6 +10,14 @@ public class ReusableSteps
     {
         this.scenarioContext = scenarioContext;
         this.productRepository = productRepository;
+    }
+
+    [Given(@"I ensure the following product is created")]
+    public void GivenIEnsureTheFollowingProductIsCreated(Table table)
+    {
+        var product = table.CreateInstance<Product>();
+        productRepository.AddProduct(product);
+        scenarioContext.Set<Product>(product);
     }
 
     [Then(@"I delete the created ""(.*)"" product for cleanup")]
