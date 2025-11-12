@@ -27,6 +27,18 @@ services:
     networks: 
       - ea_network
   
+  ea_test:
+    image: ea_test
+    container_name: ea_test
+    build:
+      context: .
+      dockerfile: EATestBDD/Dockerfile
+    restart: on-failure      
+    depends_on:
+      - ea_api
+    networks:
+      - ea_network
+  
   db:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
