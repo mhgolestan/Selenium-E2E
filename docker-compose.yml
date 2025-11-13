@@ -41,7 +41,7 @@ services:
       - ea_network
   
   db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       SA_PASSWORD: "Password%1#29"
       ACCEPT_EULA: "Y"
