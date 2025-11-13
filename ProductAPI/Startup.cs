@@ -13,9 +13,12 @@ namespace ProductAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             Configuration = configuration;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -36,13 +39,16 @@ namespace ProductAPI
 
                     c.SchemaFilter<EnumSchemaFilter>();
                 });
+            
+            if (!webHostEnvironment.IsEnvironment("Testing"))
+            {
+                var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-
-            services
-                .AddDbContext<ProductDbContext>(option =>
-                    option
-                        .UseSqlServer(connectionString + ";TrustServerCertificate=True;"));
+                services
+                    .AddDbContext<ProductDbContext>(option =>
+                        option
+                            .UseSqlServer(connectionString + ";TrustServerCertificate=True;"));
+            }
 
             services.AddTransient<IProductRepository, ProductRepository>();
         }
