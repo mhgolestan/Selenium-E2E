@@ -31,4 +31,13 @@ public class UnitTest1 : IClassFixture<WebApplicationFactory<Startup>>
         var result = product.Content.ReadAsStringAsync().Result;
         result.Should().Contain("Keyboard");
     }
+
+        [Fact]
+    public async Task TestWithGeneratedCode()
+    {
+        var webClient = webApplicationFactory.CreateClient();
+        var product = new ProductAPI("http://localhost:8000", webClient);
+        var results = await product.GetProductsAsync();
+        results.Should().HaveCount(4);
+    }
 }
