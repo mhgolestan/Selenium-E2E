@@ -4,11 +4,11 @@ using ProductAPI;
 
 namespace EAIntegrationTest;
 
-public class UnitTest1 : IClassFixture<WebApplicationFactory<ProductAPI.Startup>>
+public class UnitTest1 : IClassFixture<WebApplicationFactory<Startup>>
 {
     private readonly WebApplicationFactory<Startup> webApplicationFactory;
 
-    public UnitTest1(WebApplicationFactory<ProductAPI.Startup> webApplicationFactory)
+    public UnitTest1(WebApplicationFactory<Startup> webApplicationFactory)
     {
         this.webApplicationFactory = webApplicationFactory;
     }
@@ -30,7 +30,5 @@ public class UnitTest1 : IClassFixture<WebApplicationFactory<ProductAPI.Startup>
         var product = await webClient.GetAsync("Product/GetProducts");
         var result = product.Content.ReadAsStringAsync().Result;
         result.Should().Contain("Keyboard");
-
-
     }
 }
