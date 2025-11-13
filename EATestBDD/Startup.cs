@@ -14,9 +14,12 @@ public static class Startup
         var services = new ServiceCollection();
         var projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new string[] { @"bin/" },
                                 StringSplitOptions.None)[0];
+        
+        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         IConfigurationRoot configuration = new ConfigurationBuilder()
                                         .SetBasePath(projectPath)
-                                        .AddJsonFile("appsettings.json")
+                                        .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+                                        .AddEnvironmentVariables()
                                         .Build();
         string connectionString = configuration.GetConnectionString("DefaultConnection");
         services.AddDbContext<ProductDbContext>(option => option

@@ -1,5 +1,6 @@
 {
     "dotnet.defaultSolution": "SeleniumXUnitBasics.sln",
+    "dotnet.unitTests.runSettingsPath": "${workspaceFolder}/EATestBDD/test.runsettings",
     "editor.inlineSuggest.enabled": false,
     "cSpell.words": [
         "appsettings",
@@ -13,7 +14,10 @@
         "mytag",
         "Newtonsoft",
         "PERIPHARALS",
+        "runsettings",
         "Swashbuckle",
         "xunit"
-    ]
+    ],
+    
+
 }
