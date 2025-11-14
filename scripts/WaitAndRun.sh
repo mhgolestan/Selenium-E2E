@@ -14,3 +14,7 @@ until [ ]; do
 done
 
 dotnet test --logger "console;verbosity=detailed"
+dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
+export PATH="$PATH:/root/.dotnet/tools"
+echo "Starting Specflow living doc Report Generation"
+livingdoc test-assembly "/src/EATestBDD/bin/Debug/net9.0/EATestBDD.d11" -t "/src/EAT&stBDD/bin/Debug/net9.0/TestExecution.json"
