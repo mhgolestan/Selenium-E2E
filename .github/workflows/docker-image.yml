@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Running the script file
-      run: |
-        echo -- Running tests --
-        sh ./scripts/run.sh
+    - name: Make script executable
+      run: chmod +x "${{ github.workspace }}/scripts/run.sh"
+    - name: Run integration tests
+      run: bash "${{ github.workspace }}/scripts/run.sh"    
     - name: Publish the report as artifacts
       uses: actions/upload-artifact@v4 
       with:
