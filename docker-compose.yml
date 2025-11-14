@@ -37,6 +37,8 @@ services:
     depends_on:
       - ea_api
       - selenium-hub
+    environment:
+      - ASPNETCORE_ENVIRONMENT=remote
     networks:
       - ea_network
   
@@ -62,10 +64,7 @@ services:
       - ea_network
   
   node-docker:
-    image: selenium/node-docker:4.38.0-20251101
-    volumes:
-      - ./assets:/opt/selenium/assets
-      - ./GridConfig/config.toml:/opt/bin/config.toml
+    image: selenium/node-chrome:4.22.0
     depends_on:
       - selenium-hub
     environment:
@@ -76,7 +75,7 @@ services:
       - ea_network
 
   selenium-hub:
-    image: selenium/hub:4.38.0-20251101
+    image: selenium/hub:4.22.0
     container_name: selenium-hub
     ports:
       - "4442:4442"

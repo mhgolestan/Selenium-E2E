@@ -30,13 +30,13 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  	<ItemGroup>
-      <None Update="appsettings.remote.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="appsettings.local.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-	  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.remote.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.local.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

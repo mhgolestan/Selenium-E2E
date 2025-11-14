@@ -32,7 +32,7 @@ public class UnitTest1 : IClassFixture<WebApplicationFactory<Startup>>
         result.Should().Contain("Keyboard");
     }
 
-        [Fact]
+    [Fact]
     public async Task TestWithGeneratedCode()
     {
         var webClient = webApplicationFactory.CreateClient();
