@@ -15,4 +15,6 @@ RUN dotnet build "EAIntegrationTest.csproj" -c Release -o /app/build
 
 FROM build AS EAIntegration
 WORKDIR /src/EAIntegrationTest
-CMD ["dotnet", "test"]
+# CMD ["dotnet", "test"]
+RUN ["chmod", "+x", "../scripts/WaitAndRun.sh"]
+ENTRYPOINT [ "../scripts/WaitAndRun.sh" ]
